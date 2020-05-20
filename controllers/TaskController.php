@@ -36,21 +36,21 @@ class TaskController extends AppController
 
     public function actionSearch()
     {
-//        $name = Yii::$app->getRequest()->getQueryParam('name');
-//        $tasks = Task::find()->asArray()->where(['like','name', $name])->all();
-//
-//        return $this->render('search',[
-//            'name'=>$name,
-//            'tasks'=>$tasks,
-//        ]);
+        $name = Yii::$app->getRequest()->getQueryParam('name');
+        $tasks = Task::find()->asArray()->where(['like','name', $name])->all();
 
-        $searchModel = new TaskSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->get());
-
-        return $this->render('search', [
-            'dataProvider' => $dataProvider,
-            'searchModel' => $searchModel,
+        return $this->render('search',[
+            'name'=>$name,
+            'tasks'=>$tasks,
         ]);
+
+//        $searchModel = new TaskSearch();
+//        $dataProvider = $searchModel->search(Yii::$app->request->get());
+//
+//        return $this->render('search', [
+//            'dataProvider' => $dataProvider,
+//            'searchModel' => $searchModel,
+//        ]);
 
     }
 
@@ -78,8 +78,6 @@ class TaskController extends AppController
             Yii::$app->getSession()->setFlash('message','Task was successfully deleted');
             return $this->redirect('index');
         }
-
-
     }
 
     public function actionShow()
