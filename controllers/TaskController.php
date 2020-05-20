@@ -36,15 +36,14 @@ class TaskController extends AppController
 
     public function actionSearch()
     {
-//        $name = Yii::$app->request->post();
         $name = Yii::$app->getRequest()->getQueryParam('name');
-//        $query = Task::find()->where(['like','name',$name]);
         $tasks = Task::find()->asArray()->where(['like','name', $name])->all();
 
         return $this->render('search',[
             'name'=>$name,
             'tasks'=>$tasks,
         ]);
+
     }
 
     public function actionCreate()

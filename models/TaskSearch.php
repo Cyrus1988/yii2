@@ -10,6 +10,7 @@ namespace app\models;
 
 
 use yii\base\Model;
+use yii\data\ActiveDataProvider;
 
 class TaskSearch extends Model
 {
@@ -22,4 +23,5 @@ class TaskSearch extends Model
             [['name'], 'string'],
         ];
     }
+
 }
