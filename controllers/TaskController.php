@@ -36,12 +36,20 @@ class TaskController extends AppController
 
     public function actionSearch()
     {
-        $name = Yii::$app->getRequest()->getQueryParam('name');
-        $tasks = Task::find()->asArray()->where(['like','name', $name])->all();
+//        $name = Yii::$app->getRequest()->getQueryParam('name');
+//        $tasks = Task::find()->asArray()->where(['like','name', $name])->all();
+//
+//        return $this->render('search',[
+//            'name'=>$name,
+//            'tasks'=>$tasks,
+//        ]);
 
-        return $this->render('search',[
-            'name'=>$name,
-            'tasks'=>$tasks,
+        $searchModel = new TaskSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->get());
+
+        return $this->render('search', [
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
         ]);
 
     }
@@ -78,23 +86,6 @@ class TaskController extends AppController
     {
 
         $id = Yii::$app->request->get('id');
-
-
-//        $country = Country::find()->orderBy(['name'=>SORT_DESC])->all();
-//        $country = Country::find()->asArray()->where('code="CA"')->all();
-//        $country = Country::find()->asArray()->where(['code' => 'CA'])->all();
-//        $country = Country::find()->asArray()->where(['like','code', 'C'])->all();
-//        $country = Country::find()->asArray()->where(['<=','population', 81459000])->all();
-//        $country = Country::find()->asArray()->where(['<=','population', 81459000])->limit(1)->all();
-//        $country = Country::find()->asArray()->where(['<=','population', 81459000])->limit(1)->one();
-//        $country = Country::find()->asArray()->where(['<=','population', 81459000])->count();
-//        $country = Country::findOne(['code' => 'CA']);
-//        $country = Country::findAll(['code' => 'CA']);
-//        $query = "select * from country where population <= 81459000";
-
-//        $query = "select * from country where population <= :search";
-//        $country = Country::findBySql($query,['search'=>81459000])->all();
-
         $task = Task::findOne(['id' => $id]);
 
 

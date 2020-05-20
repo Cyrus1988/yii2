@@ -54,7 +54,7 @@ use yii\jui\DatePicker;
 
 <?= $form->field($model,'start_date')->widget(DatePicker::className(),['clientOptions' => ['dateFormat' => 'Y-m-d']]) ?>
 
-<?= $form->field($model,'end_date')->widget(DatePicker::className(),['clientOptions' => ['defaultDate' => '2014-01-01']]) ?>
+<?= $form->field($model,'end_date')->widget(DatePicker::className(),['clientOptions' => ['dateFormat' => 'Y-m-d']]) ?>
 
 
 <?= Html::submitButton('Создать задачу',['class' => 'btn']) ?>

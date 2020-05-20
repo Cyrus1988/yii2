@@ -9,6 +9,7 @@ use yii\helpers\Html;
 $this->title = 'My Yii Application';
 
 $model = new TaskSearch();
+
 ?>
 
 <div class="site-index">

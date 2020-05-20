@@ -38,9 +38,9 @@ use yii\jui\DatePicker;
                 <?= $form->field($task,'type')?>
                 <?= $form->field($task,'status')?>
                 <?= $form->field($task,'description')->textarea(['rows'=>4])?>
-                <?= $form->field($task,'start_date')->widget(DatePicker::className(),['clientOptions' => ['defaultDate' => '2014-01-01']]) ?>
+                <?= $form->field($task,'start_date')->widget(DatePicker::className(),['clientOptions' => ['dateFormat' => 'Y-m-d']]) ?>
 
-                <?= $form->field($task,'end_date')->widget(DatePicker::className(),['clientOptions' => ['defaultDate' => '2014-01-01']]) ?>
+                <?= $form->field($task,'end_date')->widget(DatePicker::className(),['clientOptions' => ['dateFormat' => 'Y-m-d']]) ?>
 
 
                 <?= Html::submitButton('Обновить задачу',['class' => 'btn']) ?>
