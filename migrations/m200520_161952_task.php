@@ -3,9 +3,9 @@
 use yii\db\Migration;
 
 /**
- * Class m200520_155623_task
+ * Class m200520_161952_task
  */
-class m200520_155623_task extends Migration
+class m200520_161952_task extends Migration
 {
     /**
      * {@inheritdoc}
@@ -29,7 +29,7 @@ class m200520_155623_task extends Migration
      */
     public function safeDown()
     {
-        echo "m200520_155623_task cannot be reverted.\n";
+        echo "m200520_161952_task cannot be reverted.\n";
 
         return false;
     }
@@ -43,7 +43,7 @@ class m200520_155623_task extends Migration
 
     public function down()
     {
-        echo "m200520_155623_task cannot be reverted.\n";
+        echo "m200520_161952_task cannot be reverted.\n";
 
         return false;
     }
