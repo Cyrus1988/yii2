@@ -24,11 +24,7 @@ class TaskController extends AppController
 
     public function actionIndex()
     {
-
         $searchModel = new TaskSearch();
-
-
-
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -36,10 +32,6 @@ class TaskController extends AppController
             'searchModel' => $searchModel,
 
         ]);
-
-        #old
-//        $tasks = Task::find()->asArray()->all();
-//        return $this->render('index',compact('tasks'));
     }
 
     public function beforeAction($action)
@@ -52,30 +44,6 @@ class TaskController extends AppController
         }
         return true;
     }
-
-//    public function actionSearch()
-//    {
-//
-//        ##1
-////        $name = Yii::$app->getRequest()->getQueryParam('name');
-////        $tasks = Task::find()->asArray()->where(['like','name', $name])->all();
-////
-////        return $this->render('search',[
-////            'name'=>$name,
-////            'tasks'=>$tasks,
-////        ]);
-//
-//
-//        ##2
-////        $searchModel = new TaskSearch();
-////        $dataProvider = $searchModel->search(Yii::$app->request->get());
-////
-////        return $this->render('search', [
-////            'dataProvider' => $dataProvider,
-////            'searchModel' => $searchModel,
-////        ]);
-//
-//    }
 
     public function actionCreate()
     {
@@ -118,7 +86,7 @@ class TaskController extends AppController
 
         if($task->load(Yii::$app->request->post())){
             if($task->save()){
-                Yii::$app->session->setFlash('success','Данные приняты');
+                Yii::$app->session->setFlash('success','Данные приняты, Задача создана');
                 return $this->refresh();
             }else{
                 Yii::$app->session->setFlash('error','Ошибка');
