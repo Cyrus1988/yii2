@@ -61,6 +61,7 @@ $config = [
 
     ],
     'params' => $params,
+    'defaultRoute' => 'task/index',
 ];
 
 if (YII_ENV_DEV) {

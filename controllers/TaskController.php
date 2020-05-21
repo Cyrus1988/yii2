@@ -16,11 +16,30 @@ use yii\helpers\Html;
 
 class TaskController extends AppController
 {
+    /**
+     * Displays homepage.
+     *
+     * @return string
+     */
 
     public function actionIndex()
     {
-        $tasks = Task::find()->asArray()->all();
-        return $this->render('index',compact('tasks'));
+
+        $searchModel = new TaskSearch();
+
+
+
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
+
+        ]);
+
+        #old
+//        $tasks = Task::find()->asArray()->all();
+//        return $this->render('index',compact('tasks'));
     }
 
     public function beforeAction($action)
@@ -34,25 +53,29 @@ class TaskController extends AppController
         return true;
     }
 
-    public function actionSearch()
-    {
-        $name = Yii::$app->getRequest()->getQueryParam('name');
-        $tasks = Task::find()->asArray()->where(['like','name', $name])->all();
-
-        return $this->render('search',[
-            'name'=>$name,
-            'tasks'=>$tasks,
-        ]);
-
-//        $searchModel = new TaskSearch();
-//        $dataProvider = $searchModel->search(Yii::$app->request->get());
+//    public function actionSearch()
+//    {
 //
-//        return $this->render('search', [
-//            'dataProvider' => $dataProvider,
-//            'searchModel' => $searchModel,
-//        ]);
-
-    }
+//        ##1
+////        $name = Yii::$app->getRequest()->getQueryParam('name');
+////        $tasks = Task::find()->asArray()->where(['like','name', $name])->all();
+////
+////        return $this->render('search',[
+////            'name'=>$name,
+////            'tasks'=>$tasks,
+////        ]);
+//
+//
+//        ##2
+////        $searchModel = new TaskSearch();
+////        $dataProvider = $searchModel->search(Yii::$app->request->get());
+////
+////        return $this->render('search', [
+////            'dataProvider' => $dataProvider,
+////            'searchModel' => $searchModel,
+////        ]);
+//
+//    }
 
     public function actionCreate()
     {
