@@ -34,6 +34,26 @@ class TaskController extends AppController
         ]);
     }
 
+
+    public function actionDelete($id)
+    {
+        ###old delete
+//        $task = Task::findOne($id)->delete();
+//        if($task)
+//        {
+//            Yii::$app->getSession()->setFlash('message','Task was successfully deleted');
+//            return $this->redirect('index');
+//        }
+
+        ###new delete
+        Task::findOne($id)->delete();
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            return ['success' => true];
+        }
+        return $this->redirect(['index']);
+    }
+
     public function beforeAction($action)
     {
         $model = new TaskSearch();
@@ -51,7 +71,7 @@ class TaskController extends AppController
 
         if($model->load(Yii::$app->request->post())){
             if($model->save()){
-                Yii::$app->session->setFlash('success','Данные приняты');
+                Yii::$app->session->setFlash('success','Задача создана');
                 return $this->refresh();
             }else{
                 Yii::$app->session->setFlash('error','Ошибка');
@@ -61,32 +81,15 @@ class TaskController extends AppController
         return $this->render('create',compact('model'));
     }
 
-    public function actionDelete($id)
-    {
-        $task = Task::findOne($id)->delete();
-        if($task)
-        {
-            Yii::$app->getSession()->setFlash('message','Task was successfully deleted');
-            return $this->redirect('index');
-        }
-    }
-
     public function actionShow()
     {
 
         $id = Yii::$app->request->get('id');
         $task = Task::findOne(['id' => $id]);
 
-
-        //проверить и доработать
-//        if(Yii::$app->request->isAjax)
-//        {
-//            echo 'hello';
-//        }
-
         if($task->load(Yii::$app->request->post())){
             if($task->save()){
-                Yii::$app->session->setFlash('success','Данные приняты, Задача создана');
+                Yii::$app->session->setFlash('success','Данные приняты');
                 return $this->refresh();
             }else{
                 Yii::$app->session->setFlash('error','Ошибка');

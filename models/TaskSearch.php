@@ -9,6 +9,8 @@
 namespace app\models;
 
 
+use yii\base\DynamicModel;
+use yii\base\InvalidConfigException;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 

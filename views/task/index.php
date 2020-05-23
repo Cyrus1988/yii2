@@ -1,16 +1,24 @@
 <?php
 
-/* @var $this yii\web\View */
 
-use app\models\TaskSearch;
 use yii\grid\GridView;
-use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+use yii\widgets\Pjax;
 
 $this->title = 'My Yii Application';
 
-//$model = new TaskSearch();
+$this->registerJsFile(
+    '@web/js/deleteTask.js',
+    ['depends' => [\yii\web\JqueryAsset::className()]]
+);
 
+
+?>
+
+<?php
+Pjax::begin([
+    'id' => 'my_pjax'
+]);
 echo GridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
@@ -26,14 +34,21 @@ echo GridView::widget([
             'template' => '{show} {delete}',
             'buttons' => [
                 'show' => function ($url) {
-                    return Html::a(
-                        '<span class="glyphicon glyphicon-folder-open"></span>',
-                        $url);
+                    return Html::a('<span class="glyphicon glyphicon-folder-open"></span>', $url);
                 },
+                'delete' => function ($url, $model) {
+                    return Html::a('<span class="glyphicon glyphicon-trash"></span>', true, [
+                        'class' => 'pjax-delete-link',
+                        'delete-url' => $url,
+                        'pjax-container' => 'my_pjax',
+                        'title' => Yii::t('yii', 'Delete')
+                    ]);
+                }
             ]
         ]
     ],
 ]);
-
+Pjax::end();
 ?>
+
 

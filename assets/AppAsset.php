@@ -24,7 +24,7 @@ class AppAsset extends AssetBundle
 //        'css/style.css'
     ];
     public $js = [
-        'js/updateTask.js'
+//        'js/deleteTask.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',
