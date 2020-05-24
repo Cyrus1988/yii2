@@ -20,7 +20,7 @@ class TaskSearch extends Task
     {
         // только поля определенные в rules() будут доступны для поиска
         return [
-            [['name'], 'string'],
+            [['name'], 'string','max'=>50],
         ];
     }
 
